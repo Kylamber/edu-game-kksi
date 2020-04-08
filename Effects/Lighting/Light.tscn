@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Effects/Lighting/Lighting.png" type="Texture" id=1]
+
+[node name="Light2D" type="Light2D"]
+position = Vector2( -8, -18 )
+scale = Vector2( 3, 3 )
+texture = ExtResource( 1 )
+texture_scale = 1.75
+color = Color( 0.654902, 0.654902, 0.654902, 1 )
+mode = 3

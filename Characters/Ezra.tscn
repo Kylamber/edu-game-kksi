@@ -22,15 +22,15 @@ animations = [ {
 "name": "idle",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "jump_up",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 1 ), ExtResource( 5 ), ExtResource( 11 ), ExtResource( 10 ), ExtResource( 9 ), ExtResource( 12 ) ],
 "loop": true,
 "name": "run",
 "speed": 12.0
+}, {
+"frames": [ ExtResource( 13 ) ],
+"loop": true,
+"name": "jump_up",
+"speed": 5.0
 }, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
@@ -39,8 +39,8 @@ animations = [ {
 } ]
 
 [sub_resource type="CapsuleShape2D" id=2]
-radius = 9.0
-height = 10.0
+radius = 8.0
+height = 14.0
 
 [sub_resource type="Animation" id=3]
 resource_name = "damaged"
@@ -63,22 +63,22 @@ resource_name = "invulnerable"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("ezraspr:visible")
 tracks/0/interp = 1
-tracks/0/loop_wrap = false
+tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
 "times": PoolRealArray( 0, 0.1, 0.2 ),
 "transitions": PoolRealArray( 1, 1, 1 ),
-"update": 1,
+"update": 0,
 "values": [ true, false, true ]
 }
 
 [sub_resource type="Animation" id=5]
 resource_name = "rest"
 tracks/0/type = "value"
-tracks/0/path = NodePath(".:visible")
+tracks/0/path = NodePath("ezraspr:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -91,7 +91,7 @@ tracks/0/keys = {
 }
 
 [node name="Ezra" type="KinematicBody2D"]
-collision_mask = 4
+collision_mask = 36
 script = ExtResource( 8 )
 
 [node name="Camera2D" type="Camera2D" parent="."]

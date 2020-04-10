@@ -38,6 +38,8 @@ format = 1
 tile_data = PoolIntArray( 131095, -1073741811, 1, 131096, 1610612749, 0, 131097, 1610612749, 65537, 131098, 1610612749, 65537, 131099, 13, 1, 196629, -1073741811, 1, 196630, 13, 2, 196631, -1610612723, 1, 196635, 1610612749, 1, 196636, 13, 1, 262165, -1073741811, 0, 262172, -1073741811, 0, 327701, -1073741811, 65537, 327708, -1073741811, 65537, 393237, -1073741811, 65537, 393244, -1073741811, 65537, 458773, -1610612723, 0, 458780, -1610612723, 0 )
 
 [node name="sewer_water" parent="." instance=ExtResource( 7 )]
+collision_layer = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="sewer_water"]
 position = Vector2( 232, 168 )
@@ -65,6 +67,7 @@ move_to = Vector2( 80, 0 )
 
 [node name="sewer_tunnel" parent="." instance=ExtResource( 5 )]
 position = Vector2( 208, 296 )
+path = "res://Maps/C1S2/c1s2-maze.tscn"
 
 [node name="sewer_tunnel2" parent="." instance=ExtResource( 5 )]
 position = Vector2( 184, 504 )
@@ -73,7 +76,7 @@ path = "res://Maps/C1S2/c1s2-2.tscn"
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="Kecoa" parent="Entities" instance=ExtResource( 6 )]
-position = Vector2( 453.746, 120.563 )
+position = Vector2( 408, 120 )
 
 [node name="Kecoa2" parent="Entities" instance=ExtResource( 6 )]
 position = Vector2( 720, 120 )

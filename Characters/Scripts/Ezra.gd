@@ -4,7 +4,7 @@ signal health_updated(health)
 
 export var acceleration = 256
 var max_speed = 5 * globVar.tile_size
-export var friction = 0.5
+export var friction = 0.8
 
 onready var stomp = $Stomp_cast
 
@@ -33,6 +33,7 @@ func _ready():
 	min_jump_velocity = -sqrt(2 * gravity * min_jump_height)
 
 func movement(delta):
+	#Keyboard Inputs
 	x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	y_input = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
 	
@@ -57,6 +58,10 @@ func movement(delta):
 		else:
 			motion.y = lerp(motion.x, max_speed * y_input, friction)
 	
+	#Stomping
+	if stomp.is_colliding() && stomp.get_collision_normal() == Vector2.UP:
+		motion.y = min_jump_velocity
+		stomp.get_collider().entity.call_deferred("stomped", self)
 
 func _process(delta):
 	match state:
@@ -64,10 +69,9 @@ func _process(delta):
 			movement(delta)
 			set_anim()
 			keyInput()
-			ezra_stomp()
 			motion = move_and_slide(motion, Vector2.UP)
 		"freeze":
-			pass
+			motion.x = 0
 		"dead":
 			motion.x = 0
 
@@ -88,14 +92,9 @@ func set_health(value):
 	var prev_health = health 
 	health = clamp(value, 0, max_health)
 	if health != prev_health:
-		emit_signal("health updated", health)
+		emit_signal("health_updated", health)
 		if health == 0:
 			kill()
-
-func ezra_stomp():
-	if stomp.is_colliding() && stomp.get_collision_normal() == Vector2.UP:
-		motion.y = min_jump_velocity
-		stomp.get_collider().entity.call_deferred("stomped", self)
 
 func keyInput():
 	if Input.is_action_just_pressed("ui_accept") && globVar.gate_entered == true:
@@ -135,8 +134,7 @@ func anim(animation: String, backwards = false):
 			$ezraspr.play("jump_up", backwards)
 			$ezraspr.flip_h = orient_anim
 
-
-
 func _on_Invulnerable_timeout():
+	print("called")
 	$Effects.play("rest")
 	$Stomp_cast.enabled = true

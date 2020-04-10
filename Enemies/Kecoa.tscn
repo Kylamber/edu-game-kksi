@@ -7,7 +7,7 @@
 [ext_resource path="res://Sprites/spr_kecoa/cockroach-run2.png" type="Texture" id=5]
 [ext_resource path="res://Sprites/spr_kecoa/cockroach-run3.png" type="Texture" id=6]
 [ext_resource path="res://Enemies/Scripts/Kecoa.gd" type="Script" id=7]
-[ext_resource path="res://Enemies/Scripts/area_detect.gd" type="Script" id=8]
+[ext_resource path="res://Enemies/detect_player.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Objects/stomped.tscn" type="PackedScene" id=9]
 
 [sub_resource type="SpriteFrames" id=1]
@@ -24,17 +24,17 @@ animations = [ {
 } ]
 
 [sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 14.0135, 5.92866 )
+extents = Vector2( 10.7429, 4.65087 )
 
 [sub_resource type="RectangleShape2D" id=3]
 extents = Vector2( 12.4881, 1.78169 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 77.9563
+radius = 64.0
 
 [node name="Kecoa" type="KinematicBody2D"]
 collision_layer = 2
-collision_mask = 4
+collision_mask = 36
 script = ExtResource( 7 )
 
 [node name="spr_kecoa" type="AnimatedSprite" parent="."]
@@ -42,10 +42,11 @@ frames = SubResource( 1 )
 animation = "run"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( -0.85437, 0.996773 )
+position = Vector2( 2.00551, 3.38429 )
 shape = SubResource( 2 )
 
 [node name="stomped" parent="." instance=ExtResource( 9 )]
+visible = false
 collision_layer = 8
 collision_mask = 0
 
@@ -53,21 +54,26 @@ collision_mask = 0
 position = Vector2( 3.8147e-06, -3.05132 )
 shape = SubResource( 3 )
 
-[node name="area_detect" type="Area2D" parent="."]
-collision_layer = 0
-script = ExtResource( 8 )
+[node name="player_detect" parent="." instance=ExtResource( 8 )]
+visible = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="area_detect"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player_detect"]
 shape = SubResource( 4 )
 
-[node name="avoid_fall" type="RayCast2D" parent="."]
-position = Vector2( -9.81538, 5.92819 )
+[node name="avoid_fall2" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
 enabled = true
-cast_to = Vector2( 0, 5 )
+cast_to = Vector2( 0, 4 )
 collision_mask = 4
+
+[node name="avoid_fall" type="RayCast2D" parent="."]
+position = Vector2( 0, 8 )
+enabled = true
+cast_to = Vector2( 0, 24 )
+collision_mask = 32
+collide_with_areas = true
+collide_with_bodies = false
 
 [node name="attack" type="RayCast2D" parent="."]
 enabled = true
 cast_to = Vector2( -12, 0 )
-[connection signal="body_entered" from="area_detect" to="area_detect" method="_on_area_detect_body_entered"]
-[connection signal="body_exited" from="area_detect" to="area_detect" method="_on_area_detect_body_exited"]

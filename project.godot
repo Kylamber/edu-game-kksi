@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Edu Game"
-run/main_scene="res://Maps/C1S2/c1s2-1.tscn"
+run/main_scene="res://Maps/C1S1/c1s1.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -43,9 +43,10 @@ enabled=PoolStringArray( "github-integration" )
 
 2d_physics/layer_1="player"
 2d_physics/layer_2="enemy"
-2d_physics/layer_3="environment"
+2d_physics/layer_3="tiles"
 2d_physics/layer_4="damage"
 2d_physics/layer_5="dead"
+2d_physics/layer_6="environment"
 
 [rendering]
 

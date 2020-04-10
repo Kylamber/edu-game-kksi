@@ -2,6 +2,7 @@ extends KinematicBody2D
 
 onready var Player = get_parent().get_node("Ezra")
 onready var avoid_fall = $avoid_fall
+onready var avoid_fall2 = $avoid_fall2
 
 var motion = Vector2.ZERO
 var speed = 5 * globVar.tile_size
@@ -34,7 +35,7 @@ func idle():
 		dir *= -1
 
 func chase():
-	if avoid_fall.is_colliding():
+	if !avoid_fall.is_colliding():
 		if Player.position.x < position.x:
 			yield(get_tree().create_timer(0.2), "timeout")
 			motion.x = -speed
@@ -43,6 +44,9 @@ func chase():
 			motion.x = speed
 	else:
 		motion.x = 0
+
+func kill():
+	state = "dead"
 
 func dead():
 	motion.x = 0
@@ -56,15 +60,17 @@ func stomped(stomper):
 	state = "dead"
 
 func check_cliff():
-	if !avoid_fall.is_colliding():
+	if !avoid_fall2.is_colliding():
 		dir *= -1
 
 func set_anim():
 	if motion.x > 0:
 		orient_anim = true
+		$attack.cast_to = Vector2(12, 0)
 		anim("run")
 	elif motion.x < 0:
 		orient_anim = false
+		$attack.cast_to = Vector2(-12, 0)
 		anim("run")
 	elif motion.x == 0:
 		anim("idle")

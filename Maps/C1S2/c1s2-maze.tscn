@@ -1,10 +1,47 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/Lighting/Light.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/ladder_area.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=9]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 8, 72 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 8, 40 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 8, 80 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 8, 88 )
+
+[sub_resource type="RectangleShape2D" id=5]
+extents = Vector2( 8, 32 )
+
+[sub_resource type="RectangleShape2D" id=6]
+extents = Vector2( 8, 56 )
+
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 88, 16 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 64, 16 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 16, 8 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 24, 8 )
+
+[sub_resource type="RectangleShape2D" id=11]
+extents = Vector2( 88, 16 )
 
 [node name="c1s2-maze" type="Node2D"]
 
@@ -53,6 +90,83 @@ move_to = Vector2( 0, -48 )
 position = Vector2( 544, 88 )
 collision_layer = 4
 collision_mask = 0
+path = "res://Maps/C1S2/c1s2-1.tscn"
+
+[node name="ladder_area" parent="." instance=ExtResource( 6 )]
+position = Vector2( 136, 392 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ladder_area"]
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="ladder_area"]
+position = Vector2( 96, 32 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="ladder_area"]
+position = Vector2( 128, -8 )
+shape = SubResource( 3 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="ladder_area"]
+position = Vector2( -112, -96 )
+shape = SubResource( 4 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="ladder_area"]
+position = Vector2( 0, -152 )
+shape = SubResource( 5 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="ladder_area"]
+position = Vector2( 688, -160 )
+shape = SubResource( 6 )
+
+[node name="sewer_water" parent="." instance=ExtResource( 7 )]
+position = Vector2( 488, 336 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="sewer_water"]
+shape = SubResource( 7 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="sewer_water"]
+position = Vector2( 184, -128 )
+shape = SubResource( 8 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="sewer_water"]
+position = Vector2( -104, -200 )
+shape = SubResource( 9 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="sewer_water"]
+position = Vector2( 0, 152 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="sewer_water"]
+position = Vector2( 112, 152 )
+shape = SubResource( 10 )
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="sewer_water"]
+position = Vector2( 432, 160 )
+shape = SubResource( 11 )
+
+[node name="bin" parent="." instance=ExtResource( 8 )]
+position = Vector2( 104, 320 )
+
+[node name="bin2" parent="." instance=ExtResource( 8 )]
+position = Vector2( 296, 192 )
+
+[node name="Kecoa" parent="." instance=ExtResource( 9 )]
+position = Vector2( 288, 392 )
+
+[node name="Kecoa2" parent="." instance=ExtResource( 9 )]
+position = Vector2( 352, 104 )
+
+[node name="Kecoa3" parent="." instance=ExtResource( 9 )]
+position = Vector2( 432, 104 )
+
+[node name="Kecoa4" parent="." instance=ExtResource( 9 )]
+position = Vector2( 768, 168 )
+
+[node name="Kecoa6" parent="." instance=ExtResource( 9 )]
+position = Vector2( 752, 456 )
+
+[node name="Kecoa5" parent="." instance=ExtResource( 9 )]
+position = Vector2( 544, 456 )
 
 [node name="Ezra" parent="." instance=ExtResource( 4 )]
 position = Vector2( 65.7174, 446.57 )

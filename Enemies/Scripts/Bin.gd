@@ -6,7 +6,7 @@ var state = "idle"
 var motion = Vector2.ZERO
 var orient_anim = false
 var gravity = 1280
-var speed = 3 * globVar.tile_size
+var speed = 5 * globVar.tile_size
 var dir = 1
 
 func _ready():

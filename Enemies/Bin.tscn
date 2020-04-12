@@ -35,7 +35,7 @@ extents = Vector2( 5.7943, 10.5384 )
 extents = Vector2( 10, 8.05467 )
 
 [sub_resource type="CircleShape2D" id=4]
-radius = 48.0
+radius = 96.0
 
 [node name="bin" type="KinematicBody2D"]
 collision_layer = 2
@@ -66,7 +66,6 @@ visible = true
 shape = SubResource( 4 )
 
 [node name="jump_cooldown" type="Timer" parent="."]
-wait_time = 1.5
 one_shot = true
 
 [node name="attack" type="RayCast2D" parent="."]

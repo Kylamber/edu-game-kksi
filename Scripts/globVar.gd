@@ -3,6 +3,7 @@ extends Node
 #State Machines
 var is_on_ladder = false
 
+var pausable = true
 var allow_movement = true
 var gate_entered = false
 var gate_path = ""

@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Edu Game"
-run/main_scene="res://Maps/C1S1/c1s1.tscn"
+run/main_scene="res://UI/Start Menu.tscn"
 config/icon="res://icon.png"
 
 [autoload]
@@ -25,6 +25,8 @@ globVar="*res://Scripts/globVar.gd"
 fade="*res://Effects/Fade/fade.tscn"
 UserData="*res://addons/github-integration/scripts/user_data.gd"
 IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
+pause="*res://UI/Pause/Pause.tscn"
+save_and_load="*res://Scripts/save_and_load.gd"
 
 [display]
 

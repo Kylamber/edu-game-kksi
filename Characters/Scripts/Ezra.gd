@@ -2,7 +2,7 @@ extends KinematicBody2D
 
 signal health_updated(health)
 
-export var acceleration = 256
+export var acceleration = 300
 var max_speed = 6 * globVar.tile_size
 export var friction = 0.5
 
@@ -42,6 +42,16 @@ func _process(delta):
 		"on_dialogue":
 			anim("idle")
 			motion.x = 0
+		"on_scavange":
+			motion.x = 0
+		"scavange_complete":
+			$Camera2D.zoom.x = lerp($Camera2D.zoom.x, 0.75, 0.1)
+			$Camera2D.zoom.y = lerp($Camera2D.zoom.x, 0.75, 0.1)
+			set_anim()
+			yield(get_tree().create_timer(1), "timeout")
+			$Camera2D.zoom.x = lerp($Camera2D.zoom.x, 1.25, 0.1)
+			$Camera2D.zoom.y = lerp($Camera2D.zoom.x, 1.25, 0.1)
+			globVar.state = "on_ground"
 		"dead":
 			motion.x = 0
 	if globVar.state != "dead":
@@ -68,9 +78,12 @@ func on_ground(delta):
 	#Keyboard Inputs
 	x_input = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	
-	if x_input != 0:
+	if x_input == 1:
 		motion.x += x_input * acceleration * delta
-		motion.x = clamp(motion.x, -max_speed, max_speed)
+		motion.x = clamp(motion.x, 0, max_speed)
+	elif x_input == -1:
+		motion.x += x_input * acceleration * delta
+		motion.x = clamp(motion.x, -max_speed, 0)
 	else:
 		motion.x = lerp(motion.x, max_speed * x_input, friction)
 	
@@ -121,38 +134,30 @@ func get_xy():
 	return position
 
 func set_anim():
-	if is_on_floor():
-		if x_input > 0:
-			orient_anim = false
-			anim("run")
-		elif x_input < 0:
-			orient_anim = true
-			anim("run")
-		elif x_input == 0:
-			anim("idle")
-
-	elif !is_on_floor():
-		if motion.y > 0:
-			anim("fall")
-		elif motion.y < 0:
-			anim("jump_up")
+	if globVar.state == "on_ground":
+		if is_on_floor():
+			if x_input > 0:
+				orient_anim = false
+				anim("run")
+			elif x_input < 0:
+				orient_anim = true
+				anim("run")
+			elif x_input == 0:
+				anim("idle")
+		elif !is_on_floor():
+			if motion.y > 0:
+				anim("fall")
+			elif motion.y < 0:
+				anim("jump_up")
+	elif globVar.state == "is_scavanging":
+		anim("scavange")
+	elif globVar.state == "scavange_complete":
+		anim("sc_complete")
 
 func anim(animation: String, backwards = false):
-	match animation:
-		"idle":
-			$ezraspr.play("idle", backwards)
-			$ezraspr.flip_h = orient_anim
-		"run":
-			$ezraspr.play("run", backwards)
-			$ezraspr.flip_h = orient_anim
-		"fall":
-			$ezraspr.play("fall", backwards)
-			$ezraspr.flip_h = orient_anim
-		"jump_up":
-			$ezraspr.play("jump_up", backwards)
-			$ezraspr.flip_h = orient_anim
+	$ezraspr.play(animation, backwards)
+	$ezraspr.flip_h = orient_anim
 
 func _on_Invulnerable_timeout():
-	print("called")
 	$Effects.play("rest")
 	$Stomp_cast.enabled = true

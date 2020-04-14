@@ -36,6 +36,9 @@ radius = 64.0
 collision_layer = 2
 collision_mask = 36
 script = ExtResource( 7 )
+__meta__ = {
+"_edit_horizontal_guides_": [ -48.0 ]
+}
 
 [node name="spr_kecoa" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
@@ -46,7 +49,6 @@ position = Vector2( 2.00551, 3.38429 )
 shape = SubResource( 2 )
 
 [node name="stomped" parent="." instance=ExtResource( 9 )]
-visible = false
 collision_layer = 8
 collision_mask = 0
 

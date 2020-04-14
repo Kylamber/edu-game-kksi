@@ -47,17 +47,17 @@ func chase():
 
 func kill():
 	state = "dead"
+	$stomped.set_collision_layer_bit(3, false)
 
 func dead():
 	motion.x = 0
-	$stomped.set_collision_layer_bit(0, false)
 
 func attack():
 	if $attack.is_colliding():
 		$attack.get_collider().call_deferred("damaged", 50)
 
 func stomped(stomper):
-	state = "dead"
+	kill()
 
 func check_cliff():
 	if !avoid_fall2.is_colliding():

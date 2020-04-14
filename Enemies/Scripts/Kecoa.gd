@@ -50,7 +50,7 @@ func kill():
 
 func dead():
 	motion.x = 0
-	$stomped.set_collision_layer_bit(3, false)
+	$stomped.set_collision_layer_bit(0, false)
 
 func attack():
 	if $attack.is_colliding():

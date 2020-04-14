@@ -1,10 +1,16 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://UI/Scripts/Start Menu.gd" type="Script" id=1]
+[ext_resource path="res://Fonts/Ubuntu.tres" type="DynamicFont" id=2]
+[ext_resource path="res://Fonts/Minecrafter.Reg.ttf" type="DynamicFontData" id=3]
+
+[sub_resource type="DynamicFont" id=1]
+font_data = ExtResource( 3 )
 
 [node name="Start Menu" type="Control"]
 anchor_right = 1.0
 anchor_bottom = 1.0
+margin_bottom = 6.10352e-05
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_use_anchors_": false
@@ -12,26 +18,37 @@ __meta__ = {
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
 margin_right = 320.0
-margin_bottom = 184.0
+margin_bottom = 180.0
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 119.0
-margin_top = 70.0
-margin_right = 201.0
-margin_bottom = 114.0
+margin_left = 81.0
+margin_top = 47.0
+margin_right = 238.0
+margin_bottom = 133.0
+custom_constants/separation = 10
+
+[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
+margin_right = 157.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+text = "TUKANG SAMPAH"
+align = 1
 
 [node name="New Game" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_right = 82.0
-margin_bottom = 20.0
+margin_top = 26.0
+margin_right = 157.0
+margin_bottom = 51.0
+custom_fonts/font = ExtResource( 2 )
 text = "New Game"
 
 [node name="Continue" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 24.0
-margin_right = 82.0
-margin_bottom = 44.0
+margin_top = 61.0
+margin_right = 157.0
+margin_bottom = 86.0
+custom_fonts/font = ExtResource( 2 )
 text = "Continue"
 [connection signal="button_down" from="CenterContainer/VBoxContainer/New Game" to="." method="_on_New_Game_button_down"]
 [connection signal="button_down" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_button_down"]

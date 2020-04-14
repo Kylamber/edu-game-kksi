@@ -1,0 +1,4 @@
+{
+    "1": {"image_path":"res://Sprites/spr_ezra/dialogue_ezra.png", "expression":"neutral", "text":"How's the status ?"},
+    "2": {"image_path":"res://Sprites/spr_ezra/dialogue_ezra.png", "expression":"neutral", "text":"Not good, the corruption is starting to spread"}
+}

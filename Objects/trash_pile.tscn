@@ -1,11 +1,14 @@
-[gd_scene load_steps=3 format=2]
+[gd_scene load_steps=4 format=2]
 
 [ext_resource path="res://Maps/C1S2/sewer_tiles.png" type="Texture" id=1]
+[ext_resource path="res://Objects/Scripts/trash_pile.gd" type="Script" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 13.9299, 4.59969 )
 
 [node name="trash_pile" type="Area2D"]
+collision_layer = 0
+script = ExtResource( 2 )
 
 [node name="Sprite" type="Sprite" parent="."]
 texture = ExtResource( 1 )
@@ -15,3 +18,5 @@ region_rect = Rect2( 192, 0, 32, 16 )
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( 0, 3.48775 )
 shape = SubResource( 1 )
+[connection signal="body_entered" from="." to="." method="_on_trash_pile_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_trash_pile_body_exited"]

@@ -27,6 +27,7 @@ UserData="*res://addons/github-integration/scripts/user_data.gd"
 IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 pause="*res://UI/Pause/Pause.tscn"
 save_and_load="*res://Scripts/save_and_load.gd"
+dialogue="*res://UI/Dialogue/Dialogue.tscn"
 
 [display]
 

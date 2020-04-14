@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
 [ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=7]
 
 [node name="c1s2-3" type="Node2D"]
 
@@ -37,38 +39,45 @@ move_to = Vector2( 0, -160 )
 [node name="sewer_tunnel" parent="." instance=ExtResource( 3 )]
 position = Vector2( 600, 136 )
 
-[node name="Kecoa" parent="." instance=ExtResource( 4 )]
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="Kecoa" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 424, 168 )
 
-[node name="Kecoa2" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa2" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 568, 248 )
 
-[node name="Kecoa3" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa3" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 408, 408 )
 
-[node name="Kecoa4" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa4" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 232, 408 )
 
-[node name="Kecoa5" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa5" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 696, 520 )
 
-[node name="Kecoa6" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa6" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 456, 616 )
 
-[node name="Kecoa7" parent="." instance=ExtResource( 4 )]
+[node name="Kecoa7" parent="Entities" instance=ExtResource( 4 )]
 position = Vector2( 664, 152 )
 
-[node name="bin" parent="." instance=ExtResource( 5 )]
+[node name="bin" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 264, 608 )
 
-[node name="bin2" parent="." instance=ExtResource( 5 )]
+[node name="bin2" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 160, 704 )
 
-[node name="bin3" parent="." instance=ExtResource( 5 )]
+[node name="bin3" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 392, 704 )
 
-[node name="bin4" parent="." instance=ExtResource( 5 )]
+[node name="bin4" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 744, 704 )
 
-[node name="bin5" parent="." instance=ExtResource( 5 )]
+[node name="bin5" parent="Entities" instance=ExtResource( 5 )]
 position = Vector2( 816, 336 )
+
+[node name="Ezra" parent="Entities" instance=ExtResource( 6 )]
+position = Vector2( 128, 160 )
+
+[node name="circular_light" parent="Entities/Ezra" instance=ExtResource( 7 )]

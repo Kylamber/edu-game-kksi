@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Effects/Lighting/Light.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Effects/Lighting/semi_circular_light.tscn" type="PackedScene" id=8]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 88, 24 )
@@ -84,6 +85,34 @@ position = Vector2( 720, 120 )
 [node name="Ezra" parent="Entities" instance=ExtResource( 2 )]
 position = Vector2( 40.3525, 113.884 )
 
-[node name="Light2D" parent="Entities/Ezra" instance=ExtResource( 3 )]
-visible = false
-position = Vector2( 1.80806, -46.5878 )
+[node name="circular_light" parent="Entities/Ezra" instance=ExtResource( 3 )]
+
+[node name="Lights" type="Node2D" parent="."]
+
+[node name="semi_circular_light" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 400, 64 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light2" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 208, 232 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light3" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 184, 416 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light4" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 880, 416 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light5" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 1280, 416 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light6" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 1280, 272 )
+scale = Vector2( 0.83535, 0.83535 )
+
+[node name="semi_circular_light7" parent="Lights" instance=ExtResource( 8 )]
+position = Vector2( 872, 224 )
+scale = Vector2( 0.83535, 0.83535 )

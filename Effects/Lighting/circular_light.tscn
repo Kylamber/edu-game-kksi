@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Effects/Lighting/radial_lighting.png" type="Texture" id=1]
+
+[node name="circular_light" type="Light2D"]
+scale = Vector2( 1.5, 1.5 )
+texture = ExtResource( 1 )
+color = Color( 0.654902, 0.654902, 0.654902, 1 )
+mode = 3

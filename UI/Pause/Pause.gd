@@ -6,7 +6,7 @@ func _ready():
 func _input(event):
 	if event.is_action_pressed("ui_cancel"):
 		pause()
-	
+
 func pause():
 	if(globVar.pausable == true):
 		get_tree().paused = not get_tree().paused
@@ -14,8 +14,6 @@ func pause():
 			$pause_control.show()
 		else:
 			$pause_control.hide()
-	else:
-		pass
 
 func _on_continue_pressed():
 	save_and_load.save_game()

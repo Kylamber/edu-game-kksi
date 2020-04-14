@@ -4,11 +4,12 @@
 [ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Effects/Lighting/Light.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Objects/ladder_area.tscn" type="PackedScene" id=6]
 [ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=8]
 [ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=9]
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 72 )

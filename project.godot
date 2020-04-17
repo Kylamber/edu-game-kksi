@@ -27,8 +27,6 @@ channel_disable_threshold_db=0.0
 
 globVar="*res://Scripts/globVar.gd"
 fade="*res://Effects/Fade/fade.tscn"
-UserData="*res://addons/github-integration/scripts/user_data.gd"
-IconLoaderGithub="*res://addons/github-integration/scripts/IconLoaderGithub.gd"
 pause="*res://UI/Pause/Pause.tscn"
 save_and_load="*res://Scripts/save_and_load.gd"
 dialogue="*res://UI/Dialogue/Dialogue.tscn"
@@ -41,10 +39,6 @@ window/size/test_width=1280
 window/size/test_height=720
 window/stretch/mode="2d"
 window/stretch/aspect="keep"
-
-[editor_plugins]
-
-enabled=PoolStringArray( "github-integration" )
 
 [layer_names]
 

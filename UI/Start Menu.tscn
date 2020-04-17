@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=6 format=2]
 
 [ext_resource path="res://UI/Scripts/Start Menu.gd" type="Script" id=1]
 [ext_resource path="res://Fonts/Ubuntu.tres" type="DynamicFont" id=2]
 [ext_resource path="res://Fonts/Minecrafter.Reg.ttf" type="DynamicFontData" id=3]
+[ext_resource path="res://Sounds/bgm/main_theme_or_character_theme.wav" type="AudioStream" id=4]
 
 [sub_resource type="DynamicFont" id=1]
 font_data = ExtResource( 3 )
@@ -16,39 +17,51 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
-margin_right = 320.0
-margin_bottom = 180.0
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+margin_left = 32.0
+margin_top = 48.0
+margin_right = 149.0
+margin_bottom = 131.0
+custom_constants/separation = 20
+__meta__ = {
+"_edit_group_": true,
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+margin_right = 117.0
+margin_bottom = 16.0
+custom_fonts/font = SubResource( 1 )
+text = "corruption"
+align = 1
 __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer"]
-margin_left = 81.0
-margin_top = 47.0
-margin_right = 238.0
-margin_bottom = 133.0
-custom_constants/separation = 10
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer"]
+margin_top = 36.0
+margin_right = 117.0
+margin_bottom = 76.0
+custom_constants/separation = 4
+__meta__ = {
+"_edit_use_anchors_": false
+}
 
-[node name="Label" type="Label" parent="CenterContainer/VBoxContainer"]
-margin_right = 157.0
-margin_bottom = 16.0
-custom_fonts/font = SubResource( 1 )
-text = "TUKANG SAMPAH"
-align = 1
-
-[node name="New Game" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 26.0
-margin_right = 157.0
-margin_bottom = 51.0
+[node name="New Game" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_right = 117.0
+margin_bottom = 18.0
 custom_fonts/font = ExtResource( 2 )
 text = "New Game"
 
-[node name="Continue" type="Button" parent="CenterContainer/VBoxContainer"]
-margin_top = 61.0
-margin_right = 157.0
-margin_bottom = 86.0
+[node name="Continue" type="Button" parent="VBoxContainer/VBoxContainer"]
+margin_top = 22.0
+margin_right = 117.0
+margin_bottom = 40.0
 custom_fonts/font = ExtResource( 2 )
 text = "Continue"
-[connection signal="button_down" from="CenterContainer/VBoxContainer/New Game" to="." method="_on_New_Game_button_down"]
-[connection signal="button_down" from="CenterContainer/VBoxContainer/Continue" to="." method="_on_Continue_button_down"]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 4 )
+autoplay = true
+[connection signal="button_down" from="VBoxContainer/VBoxContainer/New Game" to="." method="_on_New_Game_button_down"]
+[connection signal="button_down" from="VBoxContainer/VBoxContainer/Continue" to="." method="_on_Continue_button_down"]

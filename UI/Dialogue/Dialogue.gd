@@ -29,7 +29,7 @@ func update_dialogue():
 
 func stop_dialogue():
 	$Control.hide()
-	globVar.state = "on_ground"
+	globVar.state = "dialogue_finished"
 	current_dialogue = 1
 
 func next_dialogue():

@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://Objects/Scripts/sewer_water.gd" type="Script" id=1]
-
-[node name="sewer_water" type="Area2D"]
-script = ExtResource( 1 )
-[connection signal="body_entered" from="." to="." method="_on_sewer_water_body_entered"]

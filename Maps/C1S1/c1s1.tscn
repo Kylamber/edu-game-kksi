@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Maps/C1S1/Klauds.png" type="Texture" id=1]
 [ext_resource path="res://Maps/C1S1/C1S1 Map.png" type="Texture" id=2]
@@ -9,23 +9,21 @@
 [ext_resource path="res://Effects/fog_shader.shader" type="Shader" id=7]
 [ext_resource path="res://icon.png" type="Texture" id=8]
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=9]
-[ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=10]
-[ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=11]
-[ext_resource path="res://Objects/trash_pile.tscn" type="PackedScene" id=12]
-[ext_resource path="res://Objects/dialogue_area.tscn" type="PackedScene" id=13]
+[ext_resource path="res://Objects/obj_sewer_tunnel.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Enemies/entitiy_bin.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/obj_trash_pile.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Sounds/bgm/c1s1_infected_theme.wav" type="AudioStream" id=13]
+[ext_resource path="res://Enemies/entity_kecoa.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Sprites/character_sheets.png" type="Texture" id=15]
+[ext_resource path="res://Objects/area_dialogue.tscn" type="PackedScene" id=16]
 
-[sub_resource type="ShaderMaterial" id=1]
-shader = ExtResource( 7 )
-shader_param/color = Vector3( 0.35, 0.48, 0.95 )
-shader_param/OCTAVES = 4
-
-[sub_resource type="ConvexPolygonShape2D" id=2]
+[sub_resource type="ConvexPolygonShape2D" id=1]
 points = PoolVector2Array( 0, 0, 16, 0, 16, 16, 0, 16 )
 
-[sub_resource type="ConvexPolygonShape2D" id=3]
+[sub_resource type="ConvexPolygonShape2D" id=2]
 points = PoolVector2Array( 0, 0, 32, 16, 0, 16 )
 
-[sub_resource type="TileSet" id=4]
+[sub_resource type="TileSet" id=3]
 0/name = "C1S1 Tiles.png 0"
 0/texture = ExtResource( 6 )
 0/tex_offset = Vector2( 0, 0 )
@@ -38,7 +36,7 @@ points = PoolVector2Array( 0, 0, 32, 16, 0, 16 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 2 ),
+"shape": SubResource( 1 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 0/z_index = 0
@@ -54,10 +52,15 @@ points = PoolVector2Array( 0, 0, 32, 16, 0, 16 )
 "autotile_coord": Vector2( 0, 0 ),
 "one_way": false,
 "one_way_margin": 1.0,
-"shape": SubResource( 3 ),
+"shape": SubResource( 2 ),
 "shape_transform": Transform2D( 1, 0, 0, 1, 0, 0 )
 } ]
 1/z_index = 0
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = ExtResource( 7 )
+shader_param/color = Vector3( 0.35, 0.48, 0.95 )
+shader_param/OCTAVES = 4
 
 [node name="c1s1" type="Node2D"]
 
@@ -151,19 +154,13 @@ path = "res://Maps/C1S2/c1s2-1.tscn"
 instant = true
 delay = 0.01
 
-[node name="fog" type="Sprite" parent="."]
-material = SubResource( 1 )
-position = Vector2( 1378.72, 211.645 )
-scale = Vector2( 43.7088, 12.6476 )
-texture = ExtResource( 8 )
-
 [node name="Ground Tiles" type="TileMap" parent="."]
-tile_set = SubResource( 4 )
+tile_set = SubResource( 3 )
 cell_size = Vector2( 16, 16 )
 collision_layer = 4
 collision_mask = 0
 format = 1
-tile_data = PoolIntArray( 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 1, 0, 983074, 1, 0, 1048612, 1, 0, 1114150, 1, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 1179696, 0, 0, 1179697, 0, 0, 1179698, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1179702, 0, 0, 1179703, 0, 0, 1179704, 0, 0, 1179705, 0, 0, 1179706, 0, 0, 1179707, 0, 0, 1179708, 0, 0, 1179709, 0, 0, 1179710, 0, 0, 1179711, 0, 0, 1179712, 0, 0, 1179713, 0, 0, 1179714, 0, 0, 1179715, 0, 0, 1179716, 0, 0, 1179717, 0, 0, 1179718, 0, 0, 1179719, 0, 0, 1179720, 0, 0, 1179721, 0, 0, 1179722, 0, 0, 1179723, 0, 0, 1179724, 0, 0, 1179725, 0, 0, 1179726, 0, 0, 1179727, 0, 0, 1179728, 0, 0, 1179729, 0, 0, 1179730, 0, 0, 1179731, 0, 0, 1179732, 0, 0, 1179733, 0, 0, 1179734, 0, 0, 1179735, 0, 0, 1179736, 0, 0, 1179737, 0, 0, 1179738, 0, 0, 1179739, 0, 0, 1179740, 0, 0, 1179741, 0, 0, 1179742, 0, 0, 1179743, 0, 0, 1179744, 0, 0, 1179745, 0, 0, 1179746, 0, 0, 1179747, 1, 0, 1245285, 1, 0, 1310823, 1, 0, 1376361, 1, 0, 1441899, 0, 0, 1441900, 0, 0, 1441901, 0, 0, 1441902, 0, 0, 1441903, 0, 0, 1441904, 0, 0, 1441905, 0, 0, 1441906, 0, 0, 1441907, 0, 0, 1441908, 0, 0, 1441909, 0, 0, 1441910, 0, 0, 1441911, 0, 0, 1441912, 0, 0, 1441913, 0, 0, 1441914, 0, 0, 1441927, 0, 0, 1441928, 0, 0, 1441929, 0, 0, 1441930, 0, 0, 1441931, 0, 0, 1441932, 0, 0, 1441933, 0, 0, 1441934, 0, 0, 1441935, 0, 0, 1441936, 0, 0, 1441937, 0, 0, 1441938, 0, 0, 1441939, 0, 0, 1441940, 0, 0, 1441941, 0, 0, 1441942, 0, 0, 1441943, 0, 0, 1441944, 0, 0, 1441945, 0, 0, 1441946, 0, 0, 1441947, 0, 0, 1441948, 0, 0, 1441949, 0, 0, 1441950, 0, 0, 1441951, 0, 0 )
+tile_data = PoolIntArray( 917504, 0, 0, 917505, 0, 0, 917506, 0, 0, 917507, 0, 0, 917508, 0, 0, 917509, 0, 0, 917510, 0, 0, 917511, 0, 0, 917512, 0, 0, 917513, 0, 0, 917514, 0, 0, 917515, 0, 0, 917516, 0, 0, 917517, 0, 0, 917518, 0, 0, 917519, 0, 0, 917520, 0, 0, 917521, 0, 0, 917522, 0, 0, 917523, 0, 0, 917524, 0, 0, 917525, 0, 0, 917526, 0, 0, 917527, 0, 0, 917528, 0, 0, 917529, 0, 0, 917530, 0, 0, 917531, 0, 0, 917532, 0, 0, 917533, 0, 0, 917534, 0, 0, 917535, 0, 0, 917536, 1, 0, 983074, 1, 0, 1048612, 1, 0, 1114150, 1, 0, 1179688, 0, 0, 1179689, 0, 0, 1179690, 0, 0, 1179691, 0, 0, 1179692, 0, 0, 1179693, 0, 0, 1179694, 0, 0, 1179695, 0, 0, 1179696, 0, 0, 1179697, 0, 0, 1179698, 0, 0, 1179699, 0, 0, 1179700, 0, 0, 1179701, 0, 0, 1179702, 0, 0, 1179703, 0, 0, 1179704, 0, 0, 1179705, 0, 0, 1179706, 0, 0, 1179707, 0, 0, 1179708, 0, 0, 1179709, 0, 0, 1179710, 0, 0, 1179711, 0, 0, 1179712, 0, 0, 1179713, 0, 0, 1179714, 0, 0, 1179715, 0, 0, 1179716, 0, 0, 1179717, 0, 0, 1179718, 0, 0, 1179719, 0, 0, 1179720, 0, 0, 1179721, 0, 0, 1179722, 0, 0, 1179723, 0, 0, 1179724, 0, 0, 1179725, 0, 0, 1179726, 0, 0, 1179727, 0, 0, 1179728, 0, 0, 1179729, 0, 0, 1179730, 0, 0, 1179731, 0, 0, 1179732, 0, 0, 1179733, 0, 0, 1179734, 0, 0, 1179735, 0, 0, 1179736, 0, 0, 1179737, 0, 0, 1179738, 0, 0, 1179739, 0, 0, 1179740, 0, 0, 1179741, 0, 0, 1179742, 0, 0, 1179743, 0, 0, 1179744, 0, 0, 1179745, 0, 0, 1179746, 0, 0, 1179747, 1, 0, 1245285, 1, 0, 1310823, 1, 0, 1376361, 1, 0, 1441899, 0, 0, 1441900, 0, 0, 1441901, 0, 0, 1441902, 0, 0, 1441903, 0, 0, 1441904, 0, 0, 1441905, 0, 0, 1441906, 0, 0, 1441907, 0, 0, 1441908, 0, 0, 1441909, 0, 0, 1441910, 0, 0, 1441911, 0, 0, 1441912, 0, 0, 1441913, 0, 0, 1441914, 0, 0, 1441927, 0, 0, 1441928, 0, 0, 1441929, 0, 0, 1441930, 0, 0, 1441931, 0, 0, 1441932, 0, 0, 1441933, 0, 0, 1441934, 0, 0, 1441935, 0, 0, 1441936, 0, 0, 1441937, 0, 0, 1441938, 0, 0, 1441939, 0, 0, 1441940, 0, 0, 1441941, 0, 0, 1441942, 0, 0, 1441943, 0, 0, 1441944, 0, 0, 1441945, 0, 0, 1441946, 0, 0, 1441947, 0, 0, 1441948, 0, 0, 1441949, 0, 0, 1441950, 0, 0, 1441951, 0, 0, 1769594, 0, 0, 1769595, 0, 0, 1769596, 0, 0, 1769597, 0, 0, 1769598, 0, 0, 1769599, 0, 0, 1769600, 0, 0, 1769601, 0, 0, 1769602, 0, 0, 1769603, 0, 0, 1769604, 0, 0, 1769605, 0, 0, 1769606, 0, 0, 1769607, 0, 0 )
 
 [node name="Invisible tile" type="TileMap" parent="."]
 tile_set = ExtResource( 9 )
@@ -177,20 +174,8 @@ tile_data = PoolIntArray( 852103, 21, 0, 917639, 21, 0, 983175, 21, 0, 1048711, 
 position = Vector2( 1280, 360 )
 texture = ExtResource( 2 )
 
-[node name="bin" parent="." instance=ExtResource( 11 )]
-position = Vector2( 684.097, 270.78 )
-
-[node name="bin2" parent="." instance=ExtResource( 11 )]
-position = Vector2( 978.28, 271.744 )
-
-[node name="bin3" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1535.74, 271.982 )
-
-[node name="bin4" parent="." instance=ExtResource( 11 )]
-position = Vector2( 1858.22, 336.353 )
-
 [node name="trash_pile" parent="." instance=ExtResource( 12 )]
-position = Vector2( 680, 280 )
+position = Vector2( 493.128, 215.763 )
 
 [node name="trash_pile2" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1264, 280 )
@@ -198,7 +183,38 @@ position = Vector2( 1264, 280 )
 [node name="trash_pile3" parent="." instance=ExtResource( 12 )]
 position = Vector2( 1856, 344 )
 
-[node name="Ezra" parent="." instance=ExtResource( 5 )]
-position = Vector2( 148.021, 209.99 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 13 )
+autoplay = true
 
-[node name="dialogue" parent="." instance=ExtResource( 13 )]
+[node name="dialogue" parent="." instance=ExtResource( 16 )]
+position = Vector2( 304, 208 )
+
+[node name="Sprite" type="Sprite" parent="dialogue"]
+texture = ExtResource( 15 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 16, 32 )
+
+[node name="Entities" type="Node2D" parent="."]
+
+[node name="entity_kecoa" parent="Entities" instance=ExtResource( 14 )]
+position = Vector2( 871.156, 280.581 )
+stay_mode = true
+
+[node name="entity_bin" parent="Entities" instance=ExtResource( 11 )]
+position = Vector2( 697.621, 271.702 )
+
+[node name="entity_bin2" parent="Entities" instance=ExtResource( 11 )]
+position = Vector2( 1535.74, 271.982 )
+
+[node name="entity_bin3" parent="Entities" instance=ExtResource( 11 )]
+position = Vector2( 1858.22, 336.353 )
+
+[node name="Ezra" parent="Entities" instance=ExtResource( 5 )]
+position = Vector2( 144, 208 )
+
+[node name="fog" type="Sprite" parent="."]
+material = SubResource( 4 )
+position = Vector2( 1376, 200 )
+scale = Vector2( 43.7088, 12.6476 )
+texture = ExtResource( 8 )

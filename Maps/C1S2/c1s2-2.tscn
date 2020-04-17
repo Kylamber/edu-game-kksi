@@ -1,15 +1,16 @@
-[gd_scene load_steps=13 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/obj_sewer_moving_platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/ladder_area.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Objects/area_ladder.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Effects/Lighting/semi_circular_light.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/area_sewer_water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/obj_sewer_tunnel.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/entity_kecoa.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Enemies/entitiy_bin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Sounds/bgm/c1s2_sewer_theme.wav" type="AudioStream" id=11]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 80 )
@@ -77,16 +78,12 @@ shape = SubResource( 1 )
 [node name="Entities" type="Node2D" parent="."]
 position = Vector2( 752, 752 )
 
-[node name="Ezra" parent="Entities" instance=ExtResource( 3 )]
-position = Vector2( 0, 10.6667 )
-
-[node name="circular_light" parent="Entities/Ezra" instance=ExtResource( 4 )]
-
 [node name="bin2" parent="Entities" instance=ExtResource( 10 )]
 position = Vector2( 160, -144 )
 
 [node name="Kecoa2" parent="Entities" instance=ExtResource( 9 )]
 position = Vector2( 408, -136 )
+stay_mode = true
 
 [node name="Kecoa3" parent="Entities" instance=ExtResource( 9 )]
 position = Vector2( 344, -296 )
@@ -114,6 +111,12 @@ position = Vector2( -160, -144 )
 
 [node name="Kecoa" parent="Entities" instance=ExtResource( 9 )]
 position = Vector2( -392, -136 )
+stay_mode = true
+
+[node name="Ezra" parent="Entities" instance=ExtResource( 3 )]
+position = Vector2( 0, 10.6667 )
+
+[node name="circular_light" parent="Entities/Ezra" instance=ExtResource( 4 )]
 
 [node name="Lights" type="Node2D" parent="."]
 position = Vector2( 752, 752 )
@@ -143,3 +146,7 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="sewer_water"]
 position = Vector2( 952, 336 )
 shape = SubResource( 2 )
+
+[node name="bgm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 11 )
+autoplay = true

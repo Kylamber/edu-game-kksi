@@ -1,13 +1,17 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=3]
-[ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=4]
-[ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Objects/obj_sewer_moving_platform.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Objects/obj_sewer_tunnel.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Enemies/entity_kecoa.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/area_sewer_water.tscn" type="PackedScene" id=7]
 [ext_resource path="res://Effects/Lighting/semi_circular_light.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Sounds/bgm/c1s2_sewer_theme.wav" type="AudioStream" id=9]
+[ext_resource path="res://Enemies/entitiy_bin.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/obj_trash_pile.tscn" type="PackedScene" id=11]
+[ext_resource path="res://Objects/obj_checkpoint.tscn" type="PackedScene" id=12]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 88, 24 )
@@ -74,18 +78,50 @@ path = "res://Maps/C1S2/c1s2-maze.tscn"
 position = Vector2( 184, 504 )
 path = "res://Maps/C1S2/c1s2-2.tscn"
 
-[node name="Entities" type="Node2D" parent="."]
+[node name="collectibles" type="Node2D" parent="."]
+position = Vector2( 928, 304 )
 
-[node name="Kecoa" parent="Entities" instance=ExtResource( 6 )]
+[node name="trash_pile" parent="collectibles" instance=ExtResource( 11 )]
+position = Vector2( 416, 8 )
+
+[node name="trash_pile2" parent="collectibles" instance=ExtResource( 11 )]
+position = Vector2( 112, -184 )
+
+[node name="trash_pile3" parent="collectibles" instance=ExtResource( 11 )]
+position = Vector2( -104, 8 )
+
+[node name="trash_pile4" parent="collectibles" instance=ExtResource( 11 )]
+position = Vector2( 256, 168 )
+
+[node name="checkpoint" parent="." instance=ExtResource( 12 )]
+position = Vector2( 112, 112 )
+level_path = "res://Maps/C1S2/c1s2-1.tscn"
+
+[node name="entities" type="Node2D" parent="."]
+
+[node name="Kecoa" parent="entities" instance=ExtResource( 6 )]
 position = Vector2( 408, 120 )
 
-[node name="Kecoa2" parent="Entities" instance=ExtResource( 6 )]
+[node name="Kecoa2" parent="entities" instance=ExtResource( 6 )]
 position = Vector2( 720, 120 )
 
-[node name="Ezra" parent="Entities" instance=ExtResource( 2 )]
-position = Vector2( 40.3525, 113.884 )
+[node name="kecoa" parent="entities" instance=ExtResource( 6 )]
+position = Vector2( 560, 312 )
+stay_mode = true
 
-[node name="circular_light" parent="Entities/Ezra" instance=ExtResource( 3 )]
+[node name="kecoa2" parent="entities" instance=ExtResource( 6 )]
+position = Vector2( 1272, 312 )
+
+[node name="bin" parent="entities" instance=ExtResource( 10 )]
+position = Vector2( 928, 304 )
+
+[node name="bin2" parent="entities" instance=ExtResource( 10 )]
+position = Vector2( 1272, 160 )
+
+[node name="Ezra" parent="entities" instance=ExtResource( 2 )]
+position = Vector2( 40, 40 )
+
+[node name="circular_light" parent="entities/Ezra" instance=ExtResource( 3 )]
 
 [node name="Lights" type="Node2D" parent="."]
 
@@ -113,6 +149,6 @@ scale = Vector2( 0.83535, 0.83535 )
 position = Vector2( 1280, 272 )
 scale = Vector2( 0.83535, 0.83535 )
 
-[node name="semi_circular_light7" parent="Lights" instance=ExtResource( 8 )]
-position = Vector2( 872, 224 )
-scale = Vector2( 0.83535, 0.83535 )
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 9 )
+autoplay = true

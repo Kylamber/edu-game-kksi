@@ -1,10 +1,11 @@
 [gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/obj_sewer_moving_platform.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Effects/Lighting/semi_circular_light.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=5]
+
 
 [sub_resource type="OccluderPolygon2D" id=1]
 polygon = PoolVector2Array( 58.8335, 314.736, 234.6, 314.893, 234.915, 304.007, 48, 304, 48, 400, 256, 400, 256.216, 389.05, 59.149, 389.05 )

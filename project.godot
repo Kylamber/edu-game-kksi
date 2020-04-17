@@ -19,6 +19,10 @@ config/name="Edu Game"
 run/main_scene="res://UI/Start Menu.tscn"
 config/icon="res://icon.png"
 
+[audio]
+
+channel_disable_threshold_db=0.0
+
 [autoload]
 
 globVar="*res://Scripts/globVar.gd"

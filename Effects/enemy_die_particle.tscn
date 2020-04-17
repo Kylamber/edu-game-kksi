@@ -1,0 +1,30 @@
+[gd_scene load_steps=4 format=2]
+
+[sub_resource type="Gradient" id=1]
+colors = PoolColorArray( 0.588235, 0.74902, 0.607843, 1, 0.352941, 0.545098, 0.439216, 1 )
+
+[sub_resource type="GradientTexture" id=2]
+gradient = SubResource( 1 )
+
+[sub_resource type="ParticlesMaterial" id=3]
+lifetime_randomness = 1.0
+emission_shape = 1
+emission_sphere_radius = 1.0
+flag_disable_z = true
+direction = Vector3( 0, 0, 0 )
+spread = 180.0
+gravity = Vector3( 0, 0, 0 )
+initial_velocity = 50.0
+orbit_velocity = 0.0
+orbit_velocity_random = 0.0
+scale = 2.0
+scale_random = 1.0
+color_ramp = SubResource( 2 )
+
+[node name="enemy_die_particle" type="Particles2D"]
+emitting = false
+amount = 100
+lifetime = 0.3
+one_shot = true
+explosiveness = 0.5
+process_material = SubResource( 3 )

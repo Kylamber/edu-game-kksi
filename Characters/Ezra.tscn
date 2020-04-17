@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://Sprites/spr_ezra/ezra-idle-run6.png" type="Texture" id=1]
 [ext_resource path="res://Sprites/spr_ezra/ezra-idle-run5.png" type="Texture" id=2]
@@ -19,6 +19,9 @@
 [ext_resource path="res://Sprites/spr_ezra/ezra-scavange3.png" type="Texture" id=17]
 [ext_resource path="res://Sprites/spr_ezra/ezra-scavange4.png" type="Texture" id=18]
 [ext_resource path="res://Sprites/spr_ezra/ezra-scavange5.png" type="Texture" id=19]
+[ext_resource path="res://Sounds/sfx/Fruit collect 1.wav" type="AudioStream" id=20]
+[ext_resource path="res://Sounds/sfx/Boss hit 1.wav" type="AudioStream" id=21]
+[ext_resource path="res://Sounds/sfx/Hit damage 1.wav" type="AudioStream" id=22]
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
@@ -32,14 +35,14 @@ animations = [ {
 "name": "run",
 "speed": 12.0
 }, {
-"frames": [ ExtResource( 13 ) ],
-"loop": true,
-"name": "jump_up",
-"speed": 5.0
-}, {
 "frames": [ ExtResource( 14 ) ],
 "loop": true,
 "name": "fall",
+"speed": 5.0
+}, {
+"frames": [ ExtResource( 19 ) ],
+"loop": true,
+"name": "sc_complete",
 "speed": 5.0
 }, {
 "frames": [ ExtResource( 15 ), ExtResource( 16 ), ExtResource( 17 ), ExtResource( 18 ) ],
@@ -47,9 +50,9 @@ animations = [ {
 "name": "scavange",
 "speed": 5.0
 }, {
-"frames": [ ExtResource( 19 ) ],
+"frames": [ ExtResource( 13 ) ],
 "loop": true,
-"name": "sc_complete",
+"name": "jump_up",
 "speed": 5.0
 } ]
 
@@ -61,7 +64,7 @@ height = 14.0
 resource_name = "damaged"
 length = 0.2
 tracks/0/type = "value"
-tracks/0/path = NodePath("ezraspr:modulate")
+tracks/0/path = NodePath("spr_ezra:modulate")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -78,7 +81,7 @@ resource_name = "invulnerable"
 length = 0.2
 loop = true
 tracks/0/type = "value"
-tracks/0/path = NodePath("ezraspr:visible")
+tracks/0/path = NodePath("spr_ezra:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -93,7 +96,7 @@ tracks/0/keys = {
 [sub_resource type="Animation" id=5]
 resource_name = "rest"
 tracks/0/type = "value"
-tracks/0/path = NodePath("ezraspr:visible")
+tracks/0/path = NodePath("spr_ezra:visible")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/imported = false
@@ -116,15 +119,15 @@ limit_left = 0
 limit_top = 0
 smoothing_enabled = true
 
-[node name="ezraspr" type="AnimatedSprite" parent="."]
+[node name="spr_ezra" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
-animation = "sc_complete"
+animation = "fall"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 0, 1 )
+position = Vector2( 0, 3 )
 shape = SubResource( 2 )
 
-[node name="Stomp_cast" type="RayCast2D" parent="."]
+[node name="stomp_cast" type="RayCast2D" parent="."]
 position = Vector2( 0, 8 )
 enabled = true
 cast_to = Vector2( 0, 4 )
@@ -140,4 +143,15 @@ anims/rest = SubResource( 5 )
 [node name="Invulnerable" type="Timer" parent="."]
 wait_time = 0.8
 one_shot = true
+
+[node name="sfx_collection" type="Node2D" parent="."]
+
+[node name="hit_damage" type="AudioStreamPlayer2D" parent="sfx_collection"]
+stream = ExtResource( 22 )
+
+[node name="collect" type="AudioStreamPlayer2D" parent="sfx_collection"]
+stream = ExtResource( 20 )
+
+[node name="stomp" type="AudioStreamPlayer2D" parent="sfx_collection"]
+stream = ExtResource( 21 )
 [connection signal="timeout" from="Invulnerable" to="." method="_on_Invulnerable_timeout"]

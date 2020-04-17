@@ -1,16 +1,24 @@
-[gd_scene load_steps=24 format=2]
+[gd_scene load_steps=26 format=2]
 
 [ext_resource path="res://Maps/C1S2/c1s2.tres" type="TileSet" id=1]
-[ext_resource path="res://Objects/sewer_m_platform.tscn" type="PackedScene" id=2]
-[ext_resource path="res://Objects/sewer_tunnel.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Objects/obj_sewer_moving_platform.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Objects/obj_sewer_tunnel.tscn" type="PackedScene" id=3]
 [ext_resource path="res://Characters/Ezra.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Effects/Lighting/circular_light.tscn" type="PackedScene" id=5]
-[ext_resource path="res://Objects/ladder_area.tscn" type="PackedScene" id=6]
-[ext_resource path="res://Objects/sewer_water.tscn" type="PackedScene" id=7]
-[ext_resource path="res://Enemies/Bin.tscn" type="PackedScene" id=8]
-[ext_resource path="res://Enemies/Kecoa.tscn" type="PackedScene" id=9]
-[ext_resource path="res://Objects/button.tscn" type="PackedScene" id=10]
+[ext_resource path="res://Objects/area_ladder.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Objects/area_sewer_water.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Enemies/entitiy_bin.tscn" type="PackedScene" id=8]
+[ext_resource path="res://Enemies/entity_kecoa.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Objects/obj_button.tscn" type="PackedScene" id=10]
 [ext_resource path="res://Maps/C1S2/sewer_tiles.png" type="Texture" id=11]
+[ext_resource path="res://Objects/obj_trash_pile.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Enemies/entity_small_fly.tscn" type="PackedScene" id=13]
+
+
+
+
+
+
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 8, 72 )
@@ -70,26 +78,6 @@ tile_data = PoolIntArray( 0, 1610612742, 0, 1, 1610612736, 0, 2, 1610612736, 0, 
 collision_layer = 4
 collision_mask = 0
 format = 1
-
-[node name="sewer_m_platform" parent="." instance=ExtResource( 2 )]
-position = Vector2( 632, 184 )
-move_to = Vector2( 80, 0 )
-
-[node name="sewer_m_platform2" parent="." instance=ExtResource( 2 )]
-position = Vector2( 376, 456 )
-move_to = Vector2( 0, -48 )
-
-[node name="sewer_m_platform3" parent="." instance=ExtResource( 2 )]
-position = Vector2( 856, 392 )
-move_to = Vector2( 0, 96 )
-
-[node name="sewer_m_platform4" parent="." instance=ExtResource( 2 )]
-position = Vector2( 904, 392 )
-move_to = Vector2( 0, -96 )
-
-[node name="sewer_m_platform5" parent="." instance=ExtResource( 2 )]
-position = Vector2( 72, 328 )
-move_to = Vector2( 0, -48 )
 
 [node name="sewer_tunnel" parent="." instance=ExtResource( 3 )]
 position = Vector2( 544, 88 )
@@ -179,6 +167,29 @@ region_rect = Rect2( 0, 16, 16, 16 )
 position = Vector2( 0, -16 )
 shape = SubResource( 12 )
 
+[node name="collectibles" type="Node2D" parent="."]
+
+[node name="trash_pile" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 600, 296 )
+
+[node name="trash_pile2" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 632, 296 )
+
+[node name="trash_pile3" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 848, 280 )
+
+[node name="trash_pile4" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 544, 456 )
+
+[node name="trash_pile5" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 208, 312 )
+
+[node name="trash_pile6" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 176, 200 )
+
+[node name="trash_pile7" parent="collectibles" instance=ExtResource( 12 )]
+position = Vector2( 472, 104 )
+
 [node name="Entities" type="Node2D" parent="."]
 
 [node name="bin" parent="Entities" instance=ExtResource( 8 )]
@@ -188,13 +199,15 @@ position = Vector2( 104, 320 )
 position = Vector2( 296, 192 )
 
 [node name="Kecoa" parent="Entities" instance=ExtResource( 9 )]
-position = Vector2( 288, 392 )
+position = Vector2( 336, 392 )
+stay_mode = true
 
 [node name="Kecoa2" parent="Entities" instance=ExtResource( 9 )]
-position = Vector2( 352, 104 )
+position = Vector2( 280, 104 )
+stay_mode = true
 
 [node name="Kecoa3" parent="Entities" instance=ExtResource( 9 )]
-position = Vector2( 432, 104 )
+position = Vector2( 440, 104 )
 
 [node name="Kecoa4" parent="Entities" instance=ExtResource( 9 )]
 position = Vector2( 768, 168 )
@@ -210,3 +223,34 @@ position = Vector2( 65.7174, 446.57 )
 
 [node name="Light2D" parent="Entities/Ezra" instance=ExtResource( 5 )]
 position = Vector2( -9.7174, -22.57 )
+
+[node name="small_fly" parent="Entities" instance=ExtResource( 13 )]
+position = Vector2( 552, 160 )
+
+[node name="small_fly2" parent="Entities" instance=ExtResource( 13 )]
+position = Vector2( 968, 328 )
+
+[node name="small_fly3" parent="Entities" instance=ExtResource( 13 )]
+position = Vector2( 136, 88 )
+
+[node name="moving_platforms" type="Node2D" parent="."]
+
+[node name="sewer_m_platform" parent="moving_platforms" instance=ExtResource( 2 )]
+position = Vector2( 632, 184 )
+move_to = Vector2( 80, 0 )
+
+[node name="sewer_m_platform2" parent="moving_platforms" instance=ExtResource( 2 )]
+position = Vector2( 376, 456 )
+move_to = Vector2( 0, -48 )
+
+[node name="sewer_m_platform3" parent="moving_platforms" instance=ExtResource( 2 )]
+position = Vector2( 856, 392 )
+move_to = Vector2( 0, 96 )
+
+[node name="sewer_m_platform4" parent="moving_platforms" instance=ExtResource( 2 )]
+position = Vector2( 904, 392 )
+move_to = Vector2( 0, -96 )
+
+[node name="sewer_m_platform5" parent="moving_platforms" instance=ExtResource( 2 )]
+position = Vector2( 72, 328 )
+move_to = Vector2( 0, -48 )
